@@ -1,11 +1,14 @@
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'fatih/vim-go'
-call vundle#end()            " required
+if !has("compatible")
+    "Vundle Setting  
+    set nocompatible              " be iMproved, required
+    filetype off                  " required
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin()
+    Plugin 'VundleVim/Vundle.vim'
+    Plugin 'fatih/vim-go'
+    call vundle#end()            " required
+endif
 
 syntax on
 filetype plugin indent on
