@@ -1,4 +1,3 @@
-
 "-------------------------------------------
 "確認有沒有vim-plugin, 沒有則自動下載
 "https://github.com/junegunn/vim-plug 
@@ -16,19 +15,39 @@ else
 "PlugSnapshot   Generate script for restoring the current snapshot of the plugins
 "-------------------------------------------
 call plug#begin('~/.vim/plugged')
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'preservim/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'majutsushi/tagbar'
+
+Plug 'itchyny/lightline.vim'
+Plug 'itchyny/vim-gitbranch'
 call plug#end()
 "-------------------------------------------
 "setting for plugin
 "-------------------------------------------
-map <C-x> :NERDTreeToggle<CR>
+nmap <C-t> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
+
+nmap <F8> :TagbarToggle<CR>
+
+"lightline + vim-gitbranch
+set laststatus=2
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'gitbranch#name'
+      \ },
+      \ }
 "-------------------------------------------
 
 endif
 
 "顯示行號 (nu/nonu)
-set number
+set nonumber
 
 "自動縮排 (ai/noai)
 set autoindent
@@ -37,7 +56,7 @@ set autoindent
 set tabstop=4
 
 "自動縮排對齊間隔數：向右或向左一個縮排的寬度
-set shiftwidth=2
+set shiftwidth=4
 
 "自動註解關閉, 避免註解下一行被自動加上註解
 set formatoptions-=r
@@ -86,9 +105,9 @@ function FileSize()
   endif
 endfunction
 " Manually set the status line color for terminal.
-hi StatusLine ctermbg=white ctermfg=black
-set laststatus=2
-set statusline=[%{expand('%:p')}][%{strlen(&fenc)?&fenc:&enc},\ %{&ff},\ %{strlen(&filetype)?&filetype:'plain'}]%{FileSize()}%{IsBinary()}%=%c,%l/%L\ [%3p%%]
+"hi StatusLine ctermbg=white ctermfg=black
+"set laststatus=2
+"set statusline=[%{expand('%:p')}][%{strlen(&fenc)?&fenc:&enc},\ %{&ff},\ %{strlen(&filetype)?&filetype:'plain'}]%{FileSize()}%{IsBinary()}%=%c,%l/%L\ [%3p%%]
 "-------------------------------------------
 
 "key mapping
